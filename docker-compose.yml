@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   db:
-    image: postgres:12.5-alpine
+    image: postgres:14.3-alpine
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: my_app
@@ -10,12 +10,14 @@ services:
     container_name: toolkit_db
     ports:
       - 54321:5432
+    expose:
+      - '54321'
     restart: 'no'
     volumes:
       - ./data:/var/lib/postgresql/data
 
   db-test:
-    image: postgres:12.5-alpine
+    image: postgres:14.3-alpine
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: my_app
@@ -23,6 +25,8 @@ services:
     container_name: toolkit_db_test
     ports:
       - 54322:5432
+    expose:
+      - '54322'
     restart: 'no'
 
   app:
@@ -33,14 +37,19 @@ services:
     build: .
     volumes:
       - .:/var/www/html
-      - ./mount.sh:/mount.sh
+      - ${PWD}/mount.sh:/var/scripts/mount.sh
     cap_add:
       - SYS_ADMIN
       - DAC_READ_SEARCH
       - NET_ADMIN
-    command: bash -c "chmod 755 /mount.sh && /mount.sh && apachectl -D FOREGROUND"
+    command: bash -c "chmod 755 /var/scripts/mount.sh && /var/scripts/mount.sh && apachectl -D FOREGROUND"
     ports:
-      - 5000:80
+      - '3000:80'
     depends_on:
       - db
       - db-test
+    links:
+      - db
+      - db-test
+networks:
+  default:
