@@ -50,7 +50,7 @@ return [
     'App' => [
         'namespace' => 'App',
         'encoding' => env('APP_ENCODING', 'UTF-8'),
-        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_US'),
+        'defaultLocale' => env('APP_DEFAULT_LOCALE', 'en_GB'),
         'defaultTimezone' => env('APP_DEFAULT_TIMEZONE', 'UTC'),
         'base' => false,
         'dir' => 'src',
@@ -341,7 +341,7 @@ return [
             'driver' => 'Cake\Database\Driver\Postgres',
             'persistent' => false,
             'host' => 'db',
-            'port' => '5433',
+            'port' => '54322',
             'username' => 'my_app',
             'password' => 'secret',
             'database' => 'my_app_test',
