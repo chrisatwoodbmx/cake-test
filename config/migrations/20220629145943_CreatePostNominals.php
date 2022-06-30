@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
 class CreatePostNominals extends AbstractMigration
@@ -15,7 +16,7 @@ class CreatePostNominals extends AbstractMigration
      */
     public function up()
     {
-        $table = $this->table('post_nominals')
+        $table = $this->table(Configure::read('namespace.std') . 'post_nominals')
             ->addColumn('post_nominal', 'string', [
                 'limit' => 150,
                 'default' => null,
@@ -24,23 +25,19 @@ class CreatePostNominals extends AbstractMigration
         $table->create();
 
         /*ALTER profiles and add new column */
-        $profileTable = $this->table('profiles');
-        $profileTable
-            ->addColumn('post_nominal_id', 'integer', ['null' => true, 'default' => null])
-            ->addForeignKey('post_nominal_id', 'profiles', 'id');
-
-        $profileTable->update();
+        $this->table('profiles')
+            ->addColumn('post_nominal' . Configure::read('namespace.id'), 'integer', ['null' => true, 'default' => null])
+            ->addForeignKey('post_nominal' . Configure::read('namespace.id'), Configure::read('namespace.std') . 'post_nominals', 'id')
+            ->update();
     }
     public function down()
     {
         $profileTable = $this->table('profiles');
         $profileTable
-            ->dropForeignKey('post_nominal_id')
-            ->removeColumn('post_nominal_id')
+            ->dropForeignKey('post_nominal' . Configure::read('namespace.id'))
+            ->removeColumn('post_nominal' . Configure::read('namespace.id'))
             ->update();
 
-        $table = $this->table('post_nominals');
-
-        $table->drop();
+        $this->table(Configure::read('namespace.std') . 'post_nominals')->drop()->save();
     }
 }

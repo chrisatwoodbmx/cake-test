@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   db:
-    image: postgres:14.3-alpine
+    image: postgis/postgis:14-3.2-alpine
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: my_app
@@ -17,7 +17,7 @@ services:
       - ./data:/var/lib/postgresql/data
 
   db-test:
-    image: postgres:14.3-alpine
+    image: postgis/postgis:14-3.2-alpine
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: my_app

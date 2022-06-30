@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
 
@@ -16,7 +17,7 @@ class CreateProfile extends AbstractMigration
    */
   public function up()
   {
-    $table = $this->table('profiles');
+    $table = $this->table(Configure::read('namespace.std') . 'profiles');
 
     $table
       ->addColumn('uuid', 'uuid', [
@@ -32,11 +33,11 @@ class CreateProfile extends AbstractMigration
         'default' => 1,
         'null' => false,
       ])
-      ->addColumn('visibility_id', 'integer', [
+      ->addColumn('visibility' . Configure::read('namespace.id'), 'integer', [
         'default' => null,
         'null' => false,
       ])
-      ->addColumn('title_id', 'integer', [
+      ->addColumn('title' . Configure::read('namespace.id'), 'integer', [
         'default' => null,
         'null' => false,
       ])
@@ -56,7 +57,7 @@ class CreateProfile extends AbstractMigration
         'default' => null,
         'null' => false,
       ])
-      ->addColumn('known_as', 'json', [
+      ->addColumn('known_as', 'jsonb', [
         'default' => null,
         'null' => true,
       ])
@@ -96,14 +97,13 @@ class CreateProfile extends AbstractMigration
         'default' => null,
         'null' => false,
       ])
-      ->addForeignKey('title_id', 'titles', 'id');
+      ->addForeignKey('title' . Configure::read('namespace.id'), Configure::read('namespace.std') . 'titles', 'id');
 
     $table->create();
   }
 
   public function down()
   {
-    $table = $this->table('profiles');
-    $table->drop();
+    $this->table(Configure::read('namespace.std') . 'profiles')->drop()->save();
   }
 }

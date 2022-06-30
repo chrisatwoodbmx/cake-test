@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
 class CreatePronouns extends AbstractMigration
@@ -15,7 +16,7 @@ class CreatePronouns extends AbstractMigration
      */
     public function up()
     {
-        $table = $this->table('pronouns')
+        $table = $this->table(Configure::read('namespace.std') . 'pronouns')
             ->addColumn('pronoun', 'string', [
                 'limit' => 25,
                 'default' => null,
@@ -24,24 +25,21 @@ class CreatePronouns extends AbstractMigration
         $table->create();
 
         /*ALTER profiles and add new column */
-        $profileTable = $this->table('profiles');
+        $profileTable = $this->table(Configure::read('namespace.std') . 'profiles');
         $profileTable
-            ->addColumn('pronoun_id', 'integer', ['null' => true, 'default' => null])
-            ->addForeignKey('pronoun_id', 'pronouns', 'id');
+            ->addColumn('pronoun' . Configure::read('namespace.id'), 'integer', ['null' => true, 'default' => null])
+            ->addForeignKey('pronoun' . Configure::read('namespace.id'), Configure::read('namespace.std') . 'pronouns', 'id');
 
         $profileTable->update();
     }
     public function down()
     {
-        $profileTable = $this->table('profiles');
-        $profileTable
-            ->dropForeignKey('pronoun_id')
-            ->removeColumn('pronoun_id')
+        $this->table(Configure::read('namespace.std') . 'profiles')
+            ->dropForeignKey('pronoun' . Configure::read('namespace.id'))
+            ->removeColumn('pronoun' . Configure::read('namespace.id'))
             ->update();
 
 
-        $table = $this->table('pronouns');
-
-        $table->drop();
+        $this->table(Configure::read('namespace.std') . 'pronouns')->drop()->save();
     }
 }

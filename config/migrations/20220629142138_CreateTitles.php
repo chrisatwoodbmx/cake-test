@@ -1,6 +1,6 @@
 <?php
 
-
+use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
 class CreateTitles extends AbstractMigration
@@ -14,7 +14,7 @@ class CreateTitles extends AbstractMigration
      */
     public function up()
     {
-        $table = $this->table('titles');
+        $table = $this->table(Configure::read('namespace.std') . 'titles');
         $table->addColumn('title', 'string', [
             'default' => null,
             'limit' => 50,
@@ -25,7 +25,6 @@ class CreateTitles extends AbstractMigration
 
     public function down()
     {
-        $table = $this->table('title');
-        $table->drop();
+        $this->table(Configure::read('namespace.std') . 'titles')->drop()->save();
     }
 }
