@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
 
-class CreateExpertise extends AbstractMigration
+class Expertise extends AbstractMigration
 {
 
     /**

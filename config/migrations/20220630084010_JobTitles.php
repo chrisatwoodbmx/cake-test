@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
-class CreateJobTitles extends AbstractMigration
+class JobTitles extends AbstractMigration
 {
   /**
    * Change Method.

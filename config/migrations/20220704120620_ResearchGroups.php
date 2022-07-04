@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
-class CreateTeams extends AbstractMigration
+class ResearchGroups extends AbstractMigration
 {
     /**
      * Change Method.
@@ -16,44 +16,39 @@ class CreateTeams extends AbstractMigration
      */
     public function up()
     {
-        $this->table(Configure::read('namespace.std') . 'teams')
+        $this->table(Configure::read('namespace.std') . 'research_groups')
             ->addColumn('parent' . Configure::read('namespace.id'), 'integer', [
                 'null' => true,
             ])
-            ->addColumn('team', 'jsonb', [
+            ->addColumn('name', 'jsonb', [
                 'null' => false,
             ])
-            ->addIndex('team', [
+            ->addIndex('name', [
                 'unique' => true,
-                'name' => Configure::read('index') . 'name'
+                'name' => Configure::read('index') . 'name__research_groups'
             ])
             ->create();
 
-        $this->table(Configure::read('namespace.std') . 'teams')
-            ->addForeignKey('parent' . Configure::read('namespace.id'), 'teams', 'id')
+        $this->table(Configure::read('namespace.std') . 'research_groups')
+            ->addForeignKey('parent' . Configure::read('namespace.id'), 'research_groups', 'id')
             ->save();
 
         /* create mapping */
-        $this->table(Configure::read('namespace.mapping') . 'teams')
-            ->addColumn('team' . Configure::read('namespace.id'), 'integer', [
+        $this->table(Configure::read('namespace.mapping') . 'research_groups')
+            ->addColumn('research_group' . Configure::read('namespace.id'), 'integer', [
                 'null' => false
             ])
             ->addColumn('profile' . Configure::read('namespace.id'), 'integer', [
                 'null' => false
             ])
-            ->addForeignKey('team' . Configure::read('namespace.id'), 'teams', 'id')
+            ->addForeignKey('research_group' . Configure::read('namespace.id'), 'research_groups', 'id')
             ->addForeignKey('profile' . Configure::read('namespace.id'), 'profiles', 'id')
             ->create();
-
-        /* add version history */
     }
 
     public function down()
     {
-        $this->table(Configure::read('namespace.mapping') . 'teams')
-            ->drop()->save();
-
-        $this->table(Configure::read('namespace.std') . 'teams')
-            ->drop()->save();
+        $this->table(Configure::read('namespace.mapping') . 'research_groups')->drop()->save();
+        $this->table(Configure::read('namespace.std') . 'research_groups')->drop()->save();
     }
 }

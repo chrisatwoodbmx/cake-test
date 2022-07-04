@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
 
-class CreateProfile extends AbstractMigration
+class Profile extends AbstractMigration
 {
   /**
    * Change Method.

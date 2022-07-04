@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
-class CreatePronouns extends AbstractMigration
+class Pronouns extends AbstractMigration
 {
     /**
      * Change Method.

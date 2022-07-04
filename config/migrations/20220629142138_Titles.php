@@ -3,7 +3,7 @@
 use Cake\Core\Configure;
 use Migrations\AbstractMigration;
 
-class CreateTitles extends AbstractMigration
+class Titles extends AbstractMigration
 {
     /**
      * Change Method.
