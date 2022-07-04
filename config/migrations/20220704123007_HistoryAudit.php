@@ -16,7 +16,7 @@ class HistoryAudit extends AbstractMigration
      */
     public function up()
     {
-        $this->table(Configure::read('namespace.std') . 'history_audit')
+        $this->table(Configure::read('namespace.std') . 'history_audits')
             ->addColumn('table', 'string', [
                 'limit' => 30,
                 'null' => false,
@@ -48,6 +48,6 @@ class HistoryAudit extends AbstractMigration
 
     public function down()
     {
-        $this->table(Configure::read('namespace.std') . 'history_audit')->drop()->save();
+        $this->table(Configure::read('namespace.std') . 'history_audits')->drop()->save();
     }
 }

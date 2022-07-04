@@ -19,8 +19,7 @@ class Expertise extends AbstractMigration
     public function up()
     {
         $this->table(Configure::read('namespace.std') . 'expertises')
-            ->addColumn('name', 'string', [
-                'limit' => '150',
+            ->addColumn('name', 'jsonb', [
                 'null' => false,
             ])
             ->addColumn('display', 'boolean', [

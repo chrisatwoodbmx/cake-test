@@ -16,7 +16,7 @@ class Supervisions extends AbstractMigration
      */
     public function up()
     {
-        $this->table(Configure::read('namespace.mapping') . 'supervisions')
+        $this->table(Configure::read('namespace.std') . 'supervisions')
             ->addColumn('supervisor' . Configure::read('namepace.id'), 'jsonb', [
                 'null' => false,
             ])
@@ -34,6 +34,6 @@ class Supervisions extends AbstractMigration
 
     public function down()
     {
-        $this->table(Configure::read('namespace.mapping') . 'supervisions')->drop()->save();
+        $this->table(Configure::read('namespace.std') . 'supervisions')->drop()->save();
     }
 }
