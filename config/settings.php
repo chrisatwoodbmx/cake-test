@@ -2,7 +2,7 @@
 
 return [
   'namespace' => [
-    'mapping' => 'mapping__',
+    'mapping' => 'mapping_',
     'std' => '',
     'index' => 'idx_',
     'id' => '_id'
