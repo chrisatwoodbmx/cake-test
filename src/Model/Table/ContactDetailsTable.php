@@ -12,10 +12,6 @@ use Cake\Validation\Validator;
  * ContactDetails Model
  *
  * @property \App\Model\Table\ProfilesTable&\Cake\ORM\Association\BelongsTo $Profiles
- * @property \App\Model\Table\LinkedinsTable&\Cake\ORM\Association\BelongsTo $Linkedins
- * @property \App\Model\Table\GoogleScholarsTable&\Cake\ORM\Association\BelongsTo $GoogleScholars
- * @property \App\Model\Table\AcadamiasTable&\Cake\ORM\Association\BelongsTo $Acadamias
- * @property \App\Model\Table\OrcidsTable&\Cake\ORM\Association\BelongsTo $Orcids
  *
  * @method \App\Model\Entity\ContactDetail newEmptyEntity()
  * @method \App\Model\Entity\ContactDetail newEntity(array $data, array $options = [])
@@ -51,18 +47,6 @@ class ContactDetailsTable extends Table
             'foreignKey' => 'profile_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Linkedins', [
-            'foreignKey' => 'linkedin_id',
-        ]);
-        $this->belongsTo('GoogleScholars', [
-            'foreignKey' => 'google_scholar_id',
-        ]);
-        $this->belongsTo('Acadamias', [
-            'foreignKey' => 'acadamia_id',
-        ]);
-        $this->belongsTo('Orcids', [
-            'foreignKey' => 'orcid_id',
-        ]);
     }
 
     /**
@@ -96,9 +80,9 @@ class ContactDetailsTable extends Table
             ->allowEmptyString('blog');
 
         $validator
-            ->scalar('linkedin_id')
-            ->maxLength('linkedin_id', 30)
-            ->allowEmptyString('linkedin_id');
+            ->scalar('linkedin')
+            ->maxLength('linkedin', 30)
+            ->allowEmptyString('linkedin');
 
         $validator
             ->scalar('twitter_username')
@@ -106,14 +90,14 @@ class ContactDetailsTable extends Table
             ->allowEmptyString('twitter_username');
 
         $validator
-            ->scalar('google_scholar_id')
-            ->maxLength('google_scholar_id', 150)
-            ->allowEmptyString('google_scholar_id');
+            ->scalar('google_scholar')
+            ->maxLength('google_scholar', 150)
+            ->allowEmptyString('google_scholar');
 
         $validator
-            ->scalar('acadamia_id')
-            ->maxLength('acadamia_id', 150)
-            ->allowEmptyString('acadamia_id');
+            ->scalar('acadamia')
+            ->maxLength('acadamia', 150)
+            ->allowEmptyString('acadamia');
 
         $validator
             ->scalar('research_gate')
@@ -121,9 +105,9 @@ class ContactDetailsTable extends Table
             ->allowEmptyString('research_gate');
 
         $validator
-            ->scalar('orcid_id')
-            ->maxLength('orcid_id', 150)
-            ->allowEmptyString('orcid_id');
+            ->scalar('orcid')
+            ->maxLength('orcid', 150)
+            ->allowEmptyString('orcid');
 
         return $validator;
     }
@@ -138,10 +122,6 @@ class ContactDetailsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn('profile_id', 'Profiles'), ['errorField' => 'profile_id']);
-        $rules->add($rules->existsIn('linkedin_id', 'Linkedins'), ['errorField' => 'linkedin_id']);
-        $rules->add($rules->existsIn('google_scholar_id', 'GoogleScholars'), ['errorField' => 'google_scholar_id']);
-        $rules->add($rules->existsIn('acadamia_id', 'Acadamias'), ['errorField' => 'acadamia_id']);
-        $rules->add($rules->existsIn('orcid_id', 'Orcids'), ['errorField' => 'orcid_id']);
 
         return $rules;
     }

@@ -27,7 +27,7 @@ use Cake\ORM\Entity;
  * @property int|null $post_nominal_id
  * @property int|null $pronoun_id
  *
- * @property \App\Model\Entity\Visibility $visibility
+ * @property \App\Model\Entity\MappingVisibility $mapping_visibility
  * @property \App\Model\Entity\Title $title
  * @property \App\Model\Entity\PostNominal $post_nominal
  * @property \App\Model\Entity\Pronoun $pronoun
@@ -73,7 +73,7 @@ class Profile extends Entity
         'created' => true,
         'post_nominal_id' => true,
         'pronoun_id' => true,
-        'visibility' => true,
+        'mapping_visibility' => true,
         'title' => true,
         'post_nominal' => true,
         'pronoun' => true,

@@ -17,9 +17,16 @@ class Profile extends AbstractMigration
    */
   public function up()
   {
-    $table = $this->table(Configure::read('namespace.std') . 'profiles');
 
-    $table
+    /* set up visibilities mapping table */
+    $this->table(Configure::read('namespace.mapping') . 'visibilities')
+      ->addColumn('name', 'string', [
+        'limit' => 15
+      ])
+      ->create();
+
+    $this->table(Configure::read('namespace.std') . 'profiles')
+
       ->addColumn('uuid', 'uuid', [
         'default' => null,
         'null' => false,
@@ -97,9 +104,9 @@ class Profile extends AbstractMigration
         'default' => null,
         'null' => false,
       ])
-      ->addForeignKey('title' . Configure::read('namespace.id'), Configure::read('namespace.std') . 'titles', 'id');
-
-    $table->create();
+      ->addForeignKey('title' . Configure::read('namespace.id'), Configure::read('namespace.std') . 'titles', 'id')
+      ->addForeignKey('visibility' . Configure::read('namespace.id'), Configure::read('namespace.mapping') . 'visibilities', 'id')
+      ->create();
   }
 
   public function down()

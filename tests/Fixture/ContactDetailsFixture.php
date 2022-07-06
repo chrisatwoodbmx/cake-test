@@ -25,12 +25,12 @@ class ContactDetailsFixture extends TestFixture
                 'telephone' => 'Lorem ipsum do',
                 'personal_website' => '',
                 'blog' => '',
-                'linkedin_id' => 'Lorem ipsum dolor sit amet',
+                'linkedin' => 'Lorem ipsum dolor sit amet',
                 'twitter_username' => 'Lorem ipsum d',
-                'google_scholar_id' => 'Lorem ipsum dolor sit amet',
-                'acadamia_id' => 'Lorem ipsum dolor sit amet',
+                'google_scholar' => 'Lorem ipsum dolor sit amet',
+                'acadamia' => 'Lorem ipsum dolor sit amet',
                 'research_gate' => 'Lorem ipsum dolor sit amet',
-                'orcid_id' => 'Lorem ipsum dolor sit amet',
+                'orcid' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();

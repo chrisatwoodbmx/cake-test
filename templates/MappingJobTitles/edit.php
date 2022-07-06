@@ -1,0 +1,35 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\MappingJobTitle $mappingJobTitle
+ * @var string[]|\Cake\Collection\CollectionInterface $jobTitles
+ * @var string[]|\Cake\Collection\CollectionInterface $profiles
+ */
+?>
+<div class="row">
+    <aside class="column">
+        <div class="side-nav">
+            <h4 class="heading"><?= __('Actions') ?></h4>
+            <?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $mappingJobTitle->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $mappingJobTitle->id), 'class' => 'side-nav-item']
+            ) ?>
+            <?= $this->Html->link(__('List Mapping Job Titles'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+        </div>
+    </aside>
+    <div class="column-responsive column-80">
+        <div class="mappingJobTitles form content">
+            <?= $this->Form->create($mappingJobTitle) ?>
+            <fieldset>
+                <legend><?= __('Edit Mapping Job Title') ?></legend>
+                <?php
+                    echo $this->Form->control('job_title_id', ['options' => $jobTitles]);
+                    echo $this->Form->control('profile_id', ['options' => $profiles]);
+                ?>
+            </fieldset>
+            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>
+</div>

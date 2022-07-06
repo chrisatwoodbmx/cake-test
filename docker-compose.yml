@@ -7,9 +7,10 @@ services:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: my_app
       POSTGRES_DB: my_app
-    container_name: toolkit_db
+    container_name: 'profiles_db'
     ports:
-      - 54321:5432
+      - '54321:5432'
+    hostname: db
     expose:
       - '54321'
     restart: 'no'
@@ -22,18 +23,16 @@ services:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: my_app
       POSTGRES_DB: my_app_test
-    container_name: toolkit_db_test
+    container_name: 'profiles_test_db'
     ports:
-      - 54322:5432
+      - '54322:5432'
     expose:
       - '54322'
     restart: 'no'
 
   app:
     privileged: true
-    container_name: cake_test_app
-    env_file:
-      - .env
+    container_name: profiles_app
     build: .
     volumes:
       - .:/var/www/html
@@ -52,4 +51,4 @@ services:
       - db
       - db-test
 networks:
-  default:
+  internal:

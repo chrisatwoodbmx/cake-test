@@ -24,6 +24,7 @@ class Locations extends AbstractMigration
         $this->table(Configure::read('namespace.std') . 'locations')
             ->addColumn('name', 'jsonb', [])
             ->addColumn('estate_code', 'string', [
+                'null' => true,
                 'limit' => 10
             ])
             ->addColumn('squiz_code', 'string', [
@@ -49,7 +50,7 @@ class Locations extends AbstractMigration
                 'limit' => 8
             ])
             ->addColumn('web_address', 'jsonb', [
-                'null' => false,
+                'null' => true,
             ])
             ->create();
 

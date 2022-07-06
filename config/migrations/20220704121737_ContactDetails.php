@@ -32,7 +32,7 @@ class ContactDetails extends AbstractMigration
             ->addColumn('blog', 'jsonb', [
                 'null' => true
             ])
-            ->addColumn('linkedin_id', 'string', [
+            ->addColumn('linkedin', 'string', [
                 'limit' => 30,
                 'null' => true
             ])
@@ -40,11 +40,11 @@ class ContactDetails extends AbstractMigration
                 'limit' => 15,
                 'null' => true
             ])
-            ->addColumn('google_scholar_id', 'string', [
+            ->addColumn('google_scholar', 'string', [
                 'limit' => 150,
                 'null' => true
             ])
-            ->addColumn('acadamia_id', 'string', [
+            ->addColumn('acadamia', 'string', [
                 'limit' => 150,
                 'null' => true
             ])
@@ -52,7 +52,7 @@ class ContactDetails extends AbstractMigration
                 'limit' => 150,
                 'null' => true
             ])
-            ->addColumn('orcid_id', 'string', [
+            ->addColumn('orcid', 'string', [
                 'limit' => 150,
                 'null' => true
             ])

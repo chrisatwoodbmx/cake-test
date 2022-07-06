@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Profiles Model
  *
- * @property \App\Model\Table\VisibilitiesTable&\Cake\ORM\Association\BelongsTo $Visibilities
+ * @property \App\Model\Table\MappingVisibilitiesTable&\Cake\ORM\Association\BelongsTo $MappingVisibilities
  * @property \App\Model\Table\TitlesTable&\Cake\ORM\Association\BelongsTo $Titles
  * @property \App\Model\Table\PostNominalsTable&\Cake\ORM\Association\BelongsTo $PostNominals
  * @property \App\Model\Table\PronounsTable&\Cake\ORM\Association\BelongsTo $Pronouns
@@ -62,7 +62,7 @@ class ProfilesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Visibilities', [
+        $this->belongsTo('MappingVisibilities', [
             'foreignKey' => 'visibility_id',
             'joinType' => 'INNER',
         ]);
@@ -211,7 +211,7 @@ class ProfilesTable extends Table
     {
         $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
         $rules->add($rules->isUnique(['uuid']), ['errorField' => 'uuid']);
-        $rules->add($rules->existsIn('visibility_id', 'Visibilities'), ['errorField' => 'visibility_id']);
+        $rules->add($rules->existsIn('visibility_id', 'MappingVisibilities'), ['errorField' => 'visibility_id']);
         $rules->add($rules->existsIn('title_id', 'Titles'), ['errorField' => 'title_id']);
         $rules->add($rules->existsIn('post_nominal_id', 'PostNominals'), ['errorField' => 'post_nominal_id']);
         $rules->add($rules->existsIn('pronoun_id', 'Pronouns'), ['errorField' => 'pronoun_id']);

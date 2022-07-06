@@ -14,18 +14,14 @@ use Cake\ORM\Entity;
  * @property string $telephone
  * @property array|null $personal_website
  * @property array|null $blog
- * @property string|null $linkedin_id
  * @property string|null $twitter_username
- * @property string|null $google_scholar_id
- * @property string|null $acadamia_id
  * @property string|null $research_gate
- * @property string|null $orcid_id
  *
- * @property \App\Model\Entity\Profile $profile
  * @property \App\Model\Entity\Linkedin $linkedin
  * @property \App\Model\Entity\GoogleScholar $google_scholar
  * @property \App\Model\Entity\Acadamia $acadamia
  * @property \App\Model\Entity\Orcid $orcid
+ * @property \App\Model\Entity\Profile $profile
  */
 class ContactDetail extends Entity
 {
@@ -44,16 +40,12 @@ class ContactDetail extends Entity
         'telephone' => true,
         'personal_website' => true,
         'blog' => true,
-        'linkedin_id' => true,
-        'twitter_username' => true,
-        'google_scholar_id' => true,
-        'acadamia_id' => true,
-        'research_gate' => true,
-        'orcid_id' => true,
-        'profile' => true,
         'linkedin' => true,
+        'twitter_username' => true,
         'google_scholar' => true,
         'acadamia' => true,
+        'research_gate' => true,
         'orcid' => true,
+        'profile' => true,
     ];
 }

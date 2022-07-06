@@ -25,7 +25,7 @@ class ProfilesTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Profiles',
-        'app.Visibilities',
+        'app.MappingVisibilities',
         'app.Titles',
         'app.PostNominals',
         'app.Pronouns',

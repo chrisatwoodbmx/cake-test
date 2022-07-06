@@ -1,12 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Model\Validation\JSON;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+
+
 
 /**
  * Expertises Model
@@ -56,9 +60,17 @@ class ExpertisesTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
+
         $validator
             ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->notEmptyString('name')
+            ->add('name', 'custom', [
+                'rule' => function ($value, $context) {
+                    return JSON::validContextableJSON($value, $context);
+                },
+                'message' => __('Name is not valid JSON')
+            ]);
+
 
         $validator
             ->boolean('display')

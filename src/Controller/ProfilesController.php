@@ -19,7 +19,7 @@ class ProfilesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Visibilities', 'Titles', 'PostNominals', 'Pronouns'],
+            'contain' => ['MappingVisibilities', 'Titles', 'PostNominals', 'Pronouns'],
         ];
         $profiles = $this->paginate($this->Profiles);
 
@@ -36,7 +36,7 @@ class ProfilesController extends AppController
     public function view($id = null)
     {
         $profile = $this->Profiles->get($id, [
-            'contain' => ['Visibilities', 'Titles', 'PostNominals', 'Pronouns', 'Activities', 'ContactDetails', 'Contents', 'HistoryAudits', 'MappingExpertises', 'MappingJobTitles', 'MappingLocations', 'MappingOrganisations', 'MappingResearchGroups', 'MappingSpecialisms', 'MappingSpokenLanguages', 'MappingTeams'],
+            'contain' => ['MappingVisibilities', 'Titles', 'PostNominals', 'Pronouns', 'Activities', 'ContactDetails', 'Contents', 'HistoryAudits', 'MappingExpertises', 'MappingJobTitles', 'MappingLocations', 'MappingOrganisations', 'MappingResearchGroups', 'MappingSpecialisms', 'MappingSpokenLanguages', 'MappingTeams'],
         ]);
 
         $this->set(compact('profile'));
@@ -59,11 +59,11 @@ class ProfilesController extends AppController
             }
             $this->Flash->error(__('The profile could not be saved. Please, try again.'));
         }
-        $visibilities = $this->Profiles->Visibilities->find('list', ['limit' => 200])->all();
+        $mappingVisibilities = $this->Profiles->MappingVisibilities->find('list', ['limit' => 200])->all();
         $titles = $this->Profiles->Titles->find('list', ['limit' => 200])->all();
         $postNominals = $this->Profiles->PostNominals->find('list', ['limit' => 200])->all();
         $pronouns = $this->Profiles->Pronouns->find('list', ['limit' => 200])->all();
-        $this->set(compact('profile', 'visibilities', 'titles', 'postNominals', 'pronouns'));
+        $this->set(compact('profile', 'mappingVisibilities', 'titles', 'postNominals', 'pronouns'));
     }
 
     /**
@@ -87,11 +87,11 @@ class ProfilesController extends AppController
             }
             $this->Flash->error(__('The profile could not be saved. Please, try again.'));
         }
-        $visibilities = $this->Profiles->Visibilities->find('list', ['limit' => 200])->all();
+        $mappingVisibilities = $this->Profiles->MappingVisibilities->find('list', ['limit' => 200])->all();
         $titles = $this->Profiles->Titles->find('list', ['limit' => 200])->all();
         $postNominals = $this->Profiles->PostNominals->find('list', ['limit' => 200])->all();
         $pronouns = $this->Profiles->Pronouns->find('list', ['limit' => 200])->all();
-        $this->set(compact('profile', 'visibilities', 'titles', 'postNominals', 'pronouns'));
+        $this->set(compact('profile', 'mappingVisibilities', 'titles', 'postNominals', 'pronouns'));
     }
 
     /**

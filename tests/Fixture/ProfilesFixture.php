@@ -20,7 +20,7 @@ class ProfilesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'uuid' => '35dbd573-b50c-42a0-ab4a-5b665efd875b',
+                'uuid' => '8b29834e-f1ff-4723-8cbc-f1760bfcfe24',
                 'username' => 'Lorem ipsum dolor sit a',
                 'profile_type' => 1,
                 'visibility_id' => 1,
@@ -34,7 +34,7 @@ class ProfilesFixture extends TestFixture
                 'available_supervise' => 1,
                 'archived' => 1,
                 'inactive' => 1,
-                'created' => 1656948488,
+                'created' => 1657033866,
                 'post_nominal_id' => 1,
                 'pronoun_id' => 1,
             ],

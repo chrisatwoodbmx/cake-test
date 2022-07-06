@@ -1,12 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchemaInterface;
+use Cake\Database\TypeFactory;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+
+TypeFactory::map('point', 'App\Database\Type\PointType');
 
 /**
  * Locations Model
@@ -29,6 +34,13 @@ use Cake\Validation\Validator;
  */
 class LocationsTable extends Table
 {
+
+    protected function _initializeSchema(TableSchemaInterface $schema): TableSchemaInterface
+    {
+        $schema->setColumnType('coordinate', 'point');
+
+        return $schema;
+    }
     /**
      * Initialize method
      *
@@ -63,8 +75,7 @@ class LocationsTable extends Table
         $validator
             ->scalar('estate_code')
             ->maxLength('estate_code', 10)
-            ->requirePresence('estate_code', 'create')
-            ->notEmptyString('estate_code');
+            ->allowEmptyString('estate_code');
 
         $validator
             ->scalar('squiz_code')
@@ -96,8 +107,7 @@ class LocationsTable extends Table
             ->notEmptyString('postcode');
 
         $validator
-            ->requirePresence('web_address', 'create')
-            ->notEmptyString('web_address');
+            ->allowEmptyString('web_address');
 
         return $validator;
     }
